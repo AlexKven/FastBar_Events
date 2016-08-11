@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FastBar_Events.Views.LoginPage"
+             x:local="using:FastBar_Events" Appearing="This_Appearing" SizeChanged="This_SizeChanged" Title="Login">
+  <Grid x:Name="MainLayout" BackgroundColor="#222222">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition Height="0"/>
+      <RowDefinition Height="3*"/>
+    </Grid.RowDefinitions>
+    <StackLayout Grid.Row="1" HorizontalOptions="Fill" VerticalOptions="Fill">
+      <Image Source="Assets/fastbar_logo.png" x:Name="LogoImage" Margin="20" HorizontalOptions="Center"/>
+      <Label x:Name="DescriptionText" TextColor="White" VerticalOptions="Fill" HorizontalOptions="Center" Text="Event Browser"/>
+      <Label x:Name="MessageText" HorizontalTextAlignment="Center" LineBreakMode="WordWrap" TextColor="White" VerticalOptions="Fill" HorizontalOptions="Center" FontSize="20" Text="{Binding Message}"/>
+      <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="auto"/>
+          <RowDefinition x:Name="NarrowRow"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition x:Name="WideColumn"/>
+        </Grid.ColumnDefinitions>
+        <StackLayout>
+          <Entry HorizontalOptions="Fill" Placeholder="Email" Margin="10, 4, 10, 4" x:Name="UsernameBox" HeightRequest="{Binding TextboxHeight}" Keyboard="Email" Text="{Binding Username, Mode=TwoWay}" IsEnabled="{Binding IsNotBusy}"/>
+          <Entry HorizontalOptions="Fill" Placeholder="Password" Margin="10, 4, 10, 4" x:Name="PasswordBox" HeightRequest="{Binding TextboxHeight}" IsPassword="true" Text="{Binding Password, Mode=TwoWay}" IsEnabled="{Binding IsNotBusy}"/>
+        </StackLayout>
+        <StackLayout x:Name="MovingLayout">
+          <Button Command="{Binding GetLoginCommand}" x:Name="LoginButton" Margin="10, 4, 10, 4" HeightRequest="{Binding TextboxHeight}" BackgroundColor="#DDDDDD" HorizontalOptions="Fill" Text="Log In"/>
+          <Button Command="{Binding GetCreateAccountCommand}" x:Name="CreateAccountButton" Margin="10, 4, 10, 4" HeightRequest="{Binding TextboxHeight}" BackgroundColor="#DDDDDD" HorizontalOptions="Fill" Text="Create Account"/>
+        </StackLayout>
+      </Grid>
+    </StackLayout>
+  </Grid>
+</ContentPage>

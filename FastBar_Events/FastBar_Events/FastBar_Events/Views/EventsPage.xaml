@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FastBar_Events.Views.EventsPage" Title="{Binding PageTitle}">
+  <!--<ScrollView HorizontalOptions="Fill" VerticalOptions="Fill" Orientation="Vertical" Padding="20" BackgroundColor="#222222">-->
+    <ListView x:Name="ListViewEvents" BackgroundColor="#222222" CachingStrategy="RecycleElement" VerticalOptions="Fill">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Spacing="0">
+              <Label Margin="2,8,0,0" FontSize="32" Text="{Binding Name}" TextColor="White" HorizontalTextAlignment="Start" LineBreakMode="WordWrap" HorizontalOptions="Fill"/>
+              <Label Margin="5,0,2,-2" FontSize="20" Text="{Binding DateTimeStartLocal}" TextColor="#DDDDDD" HorizontalTextAlignment="Start" LineBreakMode="WordWrap" HorizontalOptions="Fill"/>
+              <Label Margin="40,-2,2,-2" FontSize="16" Text="to" TextColor="#999999" HorizontalTextAlignment="Start" LineBreakMode="WordWrap" HorizontalOptions="Fill"/>
+              <Label Margin="5,-2,2,8" FontSize="20" Text="{Binding DateTimeEndLocal}" TextColor="#DDDDDD" HorizontalTextAlignment="Start" LineBreakMode="WordWrap" HorizontalOptions="Fill"/>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

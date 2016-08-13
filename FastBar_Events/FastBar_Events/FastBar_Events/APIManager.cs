@@ -56,13 +56,16 @@ namespace FastBar_Events
         {
             HttpRequestMessage request = new HttpRequestMessage();
             request.RequestUri = new Uri("https://fastbar-test.azurewebsites.net/api/Events?userTypeFilter=Operating");
+            System.Diagnostics.Debug.WriteLine(token);
             request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
             request.Method = HttpMethod.Get;
             HttpResponseMessage resp;
-            using (var client = new HttpClient(new NativeMessageHandler()))
+            using (var client = new HttpClient())
             {
                 resp = await client.SendAsync(request);
             }
+            List<Event> results = new List<Event>();
+            string str = await resp.Content.ReadAsStringAsync();
             if (!resp.IsSuccessStatusCode)
             {
                 //Denote failure by returning null, which is different from an empty list,
@@ -70,8 +73,6 @@ namespace FastBar_Events
                 return null;
             }
 
-            List<Event> results = new List<Event>();
-            string str = await resp.Content.ReadAsStringAsync();
             var arrayObject = JArray.Parse(await resp.Content.ReadAsStringAsync());
             foreach (var item in arrayObject.Children())
             {

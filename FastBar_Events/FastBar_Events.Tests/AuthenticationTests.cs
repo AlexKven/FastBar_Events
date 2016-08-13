@@ -48,7 +48,7 @@ namespace FastBar_Events.Tests
         {
             //Generate a random token of random length
             Random rnd = new Random();
-            int length = rnd.Next(200, 500);
+            int length = rnd.Next(4000, 10000);
             byte[] tokenBytes = new byte[length];
             rnd.NextBytes(tokenBytes);
             string token = new string((from bte in tokenBytes select (char)bte).ToArray());

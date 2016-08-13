@@ -47,6 +47,7 @@ namespace FastBar_Events.Views
                 //For some strange reason, Android seems to be ignoring placeholder text color.
                 //TODO: Investigate why placeholder text color isn't working on Android.
                 PasswordBox.PlaceholderColor = UsernameBox.PlaceholderColor = Color.FromHex("DDDDDD");
+                LoginButton.TextColor = CreateAccountButton.TextColor = Color.Black;
             });
 
             LogoImage.Source = Device.OnPlatform(

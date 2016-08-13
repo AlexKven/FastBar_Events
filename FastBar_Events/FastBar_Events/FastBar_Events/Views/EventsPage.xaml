@@ -6,14 +6,13 @@
     <ListView x:Name="ListViewEvents" BackgroundColor="#222222" CachingStrategy="RecycleElement" VerticalOptions="Fill">
       <ListView.ItemTemplate>
         <DataTemplate>
-          <ViewCell>
-            <StackLayout Spacing="0">
+            <!--<StackLayout Spacing="0" HeightRequest="80">
               <Label Margin="2,8,0,0" FontSize="32" Text="{Binding Name}" TextColor="White" HorizontalTextAlignment="Start" LineBreakMode="WordWrap" HorizontalOptions="Fill"/>
               <Label Margin="5,0,2,-2" FontSize="20" Text="{Binding DateTimeStartLocal}" TextColor="#DDDDDD" HorizontalTextAlignment="Start" LineBreakMode="WordWrap" HorizontalOptions="Fill"/>
               <Label Margin="40,-2,2,-2" FontSize="16" Text="to" TextColor="#999999" HorizontalTextAlignment="Start" LineBreakMode="WordWrap" HorizontalOptions="Fill"/>
               <Label Margin="5,-2,2,8" FontSize="20" Text="{Binding DateTimeEndLocal}" TextColor="#DDDDDD" HorizontalTextAlignment="Start" LineBreakMode="WordWrap" HorizontalOptions="Fill"/>
-            </StackLayout>
-          </ViewCell>
+            </StackLayout>-->
+            <ImageCell TextColor="White" DetailColor="#DDDDDD" Text="{Binding Name}" Detail="{Binding DateTimeDescription}"/>
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>

@@ -31,6 +31,11 @@ namespace FastBar_Events.Models
         {
             get { return DateTimeEndUtc.ToLocalTime(); }
         }
+        [Ignore]
+        public string DateTimeDescription
+        {
+            get { return $"{DateTimeStartLocal.ToString()} to {DateTimeEndLocal.ToString()}"; }
+        }
 
         //Foreign key to user table. Currently not important, but inclusion in the
         //schema now would allow the app to be expanded to handle multiple users

@@ -89,6 +89,7 @@ namespace FastBar_Events.ViewModels
                 IsBusy = true;
                 Message = "Logging in...";
                 string token = await APIManager.GetToken(Username, Password);
+                System.Diagnostics.Debug.WriteLine(token);
                 if (token == null)
                 {
                     //Failure of some sort

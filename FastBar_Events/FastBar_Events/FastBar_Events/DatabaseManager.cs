@@ -25,13 +25,17 @@ namespace FastBar_Events
             get
             {
                 return Database.Table<User>().FirstOrDefault();
+                
             }
             set
             {
                 //DeleteAll is not commonly used, but makes sense for this scenario
                 Database.DeleteAll<User>();
-                if (value != null)
-                    Database.Insert(value);
+                //SQLiteCommand cmd = Database.CreateCommand("INSERT INTO User(Email, CipheredAccessToken) VALUES(?, ?);", value.Email, value.CipheredAccessToken );
+                //cmd.ExecuteQuery<User>();
+                Database.Insert(value);
+                //if (value != null)
+                //    Database.Insert(value);
                 //Again, event details only apply to current user, so they should be
                 //deleted when the user changes. If developed in the future to allow more than
                 //one logged in user, delete only rows that contain a user not logged in.
@@ -68,7 +72,7 @@ namespace FastBar_Events
             {
                 events = await APIManager.GetEvents(user.Token);
             }
-            catch (System.Net.Http.HttpRequestException e) { }
+            catch (System.Net.Http.HttpRequestException) { }
 
             if (events == null)
                 return false;
@@ -94,12 +98,31 @@ namespace FastBar_Events
 
         public static string UnEscape(this string str)
         {
-            string result = str;
-            for (int i = 0; i < EscapableChars.Length; i++)
+            if (str == null)
+                return null;
+            StringBuilder result = new StringBuilder();
+            bool escaping = false;
+            foreach (var chr in str)
             {
-                result = result.Replace(EscapableChars[0].ToString() + EscapeIndices[i].ToString(), EscapableChars[i].ToString());
+                if (escaping)
+                {
+                    int i = EscapeIndices.IndexOf(chr);
+                    result.Append(EscapableChars[i]);
+                    escaping = false;
+                }
+                else
+                {
+                    if (chr == EscapableChars[0])
+                        escaping = true;
+                    else
+                        result.Append(chr);
+                }
             }
-            return result;
+            //for (int i = 0; i < EscapableChars.Length; i++)
+            //{
+            //    result = result.Replace(EscapableChars[0].ToString() + EscapeIndices[i].ToString(), EscapableChars[i].ToString());
+            //}
+            return result.ToString();
         }
 
         public static string EscapableChars = "/!~'_%^|()[]{}`@#?\\\0\"";

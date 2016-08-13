@@ -9,6 +9,7 @@ namespace FastBar_Events
 {
     public interface ISQLite
     {
+        //An interface for handling SQLite initialization across platforms.
         SQLiteConnection GetConnection();
     }
 }

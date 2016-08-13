@@ -31,6 +31,7 @@ namespace FastBar_Events.Models
         {
             get { return DateTimeEndUtc.ToLocalTime(); }
         }
+        //Used for displaying in the events page. Not stored in database.
         [Ignore]
         public string DateTimeDescription
         {

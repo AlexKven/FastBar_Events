@@ -15,6 +15,7 @@ namespace FastBar_Events
 
         public static void Initialize()
         {
+            //Initialize the database and create tables.
             Database = DependencyService.Get<ISQLite>().GetConnection();
             Database.CreateTable(typeof(User));
             Database.CreateTable(typeof(Event));
@@ -43,6 +44,7 @@ namespace FastBar_Events
             }
         }
 
+        //Updates events stored in the database with the currently logged in user's token.
         public static void UpdateEvents(IEnumerable<Event> events)
         {
             if (LoggedInUser == null)

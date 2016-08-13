@@ -1,4 +1,5 @@
-﻿using FastBar_Events.Models;
+﻿//MVVM ViewModel for the login page.
+using FastBar_Events.Models;
 using FastBar_Events.Views;
 using MvvmHelpers;
 using System;

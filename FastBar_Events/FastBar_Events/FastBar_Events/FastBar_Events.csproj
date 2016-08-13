@@ -37,7 +37,6 @@
   <ItemGroup>
     <Compile Include="APIManager.cs" />
     <Compile Include="App.cs" />
-    <Compile Include="Converters\LoginPage_AdaptiveUIConverterse.cs" />
     <Compile Include="DatabaseManager.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="ISQLite.cs" />

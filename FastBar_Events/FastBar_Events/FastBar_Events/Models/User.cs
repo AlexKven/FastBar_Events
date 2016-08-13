@@ -17,36 +17,21 @@ namespace FastBar_Events.Models
 
         //Not stored in the database directly, but automatically ciphers and
         //escapes token and puts it into CipheredAccessToken, which is stored.
+        //Purpose of this property is easy retrieval of actual token by application.
         [Ignore]
         public string Token
         {
             get
             {
-                //return CipheredAccessToken;
-                //return CipheredAccessToken == null ? null : APIManager.CipherToken(CipheredAccessToken);
-                //if (CipheredAccessToken == null) return null;
-                System.Diagnostics.Debug.WriteLine("\n\nr2: " + CipheredAccessToken + "\n\n");
+                //Converts the database-friendly token (which is XOR ciphered and escaped) to the raw token sent to the server.
                 var db = DatabaseManager.UnEscape(CipheredAccessToken);
-                System.Diagnostics.Debug.WriteLine("\n\nr1: " + db + "\n\n");
-                var result = APIManager.CipherToken(db);
-                System.Diagnostics.Debug.WriteLine("\n\nr0: " + result + "\n\n");
-                return result;
+                return APIManager.CipherToken(db);
             }
             set
             {
-                //CipheredAccessToken = value;
-                //return;
-                //CipheredAccessToken = value == null ? null : APIManager.CipherToken(value);
-                //return;
-                System.Diagnostics.Debug.WriteLine("\n\nw0: " + value + "\n\n");
+                //Converts the raw token to a database suitable token (it is XOR ciphered and escaped).
                 var ciphered = value == null ? null : APIManager.CipherToken(value);
-                System.Diagnostics.Debug.WriteLine("\n\nw1: " + ciphered + "\n\n");
-                if (value != null && APIManager.CipherToken(ciphered) != value)
-                {
-
-                }
                 CipheredAccessToken = value == null ? null : DatabaseManager.Escape(ciphered);
-                System.Diagnostics.Debug.WriteLine("\n\nw2: " + CipheredAccessToken + "\n\n");
             }
         }
     }

@@ -6,6 +6,7 @@ namespace FastBar_Events
 {
     public static class Helpers
     {
+        //Returns true if a value is a primitive numeric type.
         public static bool IsNumber(this object value)
         {
             return     value is sbyte

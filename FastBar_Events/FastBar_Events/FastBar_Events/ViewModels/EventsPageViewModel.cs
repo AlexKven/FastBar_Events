@@ -1,4 +1,5 @@
-﻿using FastBar_Events.Models;
+﻿//MVVM ViewModel for the events page.
+using FastBar_Events.Models;
 using MvvmHelpers;
 using System;
 using System.Collections.Generic;
